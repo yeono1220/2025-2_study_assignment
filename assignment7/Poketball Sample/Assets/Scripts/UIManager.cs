@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     Coroutine NowCoroutine;
 
     void Awake() {
-        // MyText를 얻어오고, 내용을 지운다.
+        // MyText를 얻어오고, 내용을 지운다.dd
         // ---------- TODO ---------- 
         // Hierarchy 구조상 UIManager가 붙은 Canvas 하위에 "MyText"라는 이름의 오브젝트가 있어야 함
         Transform textObj = transform.Find("MyText");

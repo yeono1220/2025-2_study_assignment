@@ -35,33 +35,40 @@ public class GameManager : MonoBehaviour
     void MoveCam()
     {
         // CamObj는 Character의 x, y position을 따라간다.
-        // ---------- TODO ---------- 
-        
-        // -------------------- 
+        // Character가 파괴(Game Over)되었을 때 오류를 방지하기 위해 null 체크를 합니다.
+        if (Character != null && CamObj != null)
+        {
+            // 카메라는 보통 Z축 위치를 유지해야 하므로 Z값은 기존 값을 사용합니다.
+            CamObj.transform.position = new Vector3(Character.transform.position.x, Character.transform.position.y, CamObj.transform.position.z);
+        }
     }
 
     void MoveCharacter()
     {
         // Character는 초당 CharacterSpeed의 속도로 우측으로 움직인다.
-        // ---------- TODO ---------- 
-        
-        // -------------------- 
+        if (Character != null)
+        {
+            Character.transform.Translate(Vector3.right * CharacterSpeed * Time.deltaTime);
+        }
     }
 
     public void GameOver()
     {
         // Character를 삭제하고, "Game Over!"라는 메시지를 3초간 띄우고, RestartButton을 활성화한다.
-        // ---------- TODO ---------- 
-        
-        // -------------------- 
+        if (Character != null)
+        {
+            Destroy(Character);
+        }
+
+        MyUIManager.DisplayMessage("Game Over!", 3f);
+        MyUIManager.RestartButton.SetActive(true);
     }
 
     public void GetPoint(int point)
     {
         // point만큼 점수를 증가시키고 UI에 표시한다.
-        // ---------- TODO ---------- 
-        
-        // -------------------- 
+        NowScore += point;
+        MyUIManager.DisplayScore(NowScore);
     }
 
     // Restart the game
